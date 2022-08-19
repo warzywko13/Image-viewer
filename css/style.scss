@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+
+/* Settings */
+$main-color: rgba(255, 255, 255, 0.6);
+$main-color-hover: rgba(255, 255, 255, 0.9);
+
+
+* {
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+.container {
+    width: 70%;
+    display: block;
+    margin: 0 auto;
+
+    h1 {
+        margin: 1rem 0;
+        text-align: center;
+    }
+
+    hr {
+        width: 20rem;
+        margin: auto;
+    }
+
+    .image-gallery {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        >img {
+            width: 20rem;
+            height: 20rem;
+            padding: 1rem;
+            border-radius: 1.5rem;
+            transition: 0.1s;
+            cursor: pointer;
+        }
+
+        >img:hover {
+            scale: 1.02;
+        }
+    }
+
+    #lightbox {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, .8);
+
+        #box {
+            position: absolute;
+            max-width: 80vw;
+            max-height: 80vh;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+            button,
+            span {
+                position: absolute;
+                z-index: 1000;
+                border: none;
+                background: none;
+                font-size: 5rem;
+                color: $main-color;
+            }
+
+            span {
+                font-size: 1rem;
+                bottom: 1rem;
+                left: 1rem;
+                font-size: 1.3rem;
+                font-weight: 400;
+            }
+
+            .arrow {
+                top: 50%;
+                transform: translateY(-50%);
+            }
+
+            #left-arrow {
+                left: 1rem;
+            }
+
+            #right-arrow {
+                right: 1rem;
+            }
+
+            #left-arrow,
+            #right-arrow,
+            #exit-button {
+                cursor: pointer;
+                transition: 0.3s ease-in-out;
+            }
+
+            #left-arrow:hover,
+            #right-arrow:hover {
+                scale: 1.1;
+            }
+
+            #left-arrow:hover,
+            #right-arrow:hover,
+            #exit-button:hover {
+                color: $main-color-hover;
+            }
+
+            #exit-button:hover {
+                transform: rotate(180deg);
+            }
+
+            #exit-button {
+                right: 1rem;
+                font-size: 4rem;
+            }
+
+            img {
+                position: relative;
+                max-width: 80vw;
+                max-height: 80vh;
+                display: block;
+                margin: auto;
+                border-radius: 0.5rem;
+            }
+        }
+    }
+}
