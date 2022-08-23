@@ -43,10 +43,12 @@ const openImage = (imageGallery, images, id) => {
 
     /* Click Handle */
     const handleClick = (e) => {
-        try {
-            const target = e.target.attributes.id.value;
-            if (target === 'lightbox') exit();
-        } catch (e) { }
+        if (!e.target.attributes.id) {
+            return
+        }
+
+        const target = e.target.attributes.id.value;
+        if (target === 'lightbox') exit();
     }
     document.onclick = handleClick;
 
