@@ -7,14 +7,15 @@ const openImage = (imageGallery, images, id) => {
   createImage(imageGallery, images, id);
 
   /* Next Image */
-  const next = ({ target }) => {
-    const { id } = target;
+  const next = ({ id }) => {
     const changeImageLocation =
       imageGallery.querySelector("#lightbox #box img");
     nextImage(id, images, changeImageLocation);
   };
   const arrows = imageGallery.querySelectorAll("#lightbox #box .arrow");
-  arrows.forEach((arrow) => arrow.addEventListener("click", next, arrow));
+  arrows.forEach((arrow) =>
+    arrow.addEventListener("click", next, arrow.target)
+  );
 
   /* Close Image */
   const exit = () => {
