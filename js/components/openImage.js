@@ -14,7 +14,7 @@ const openImage = (imageGallery, images, id) => {
   };
   const arrows = imageGallery.querySelectorAll("#lightbox #box .arrow");
   arrows.forEach((arrow) =>
-    arrow.addEventListener("click", next, arrow.target)
+    arrow.addEventListener("click", ({ target }) => next(target))
   );
 
   /* Close Image */
