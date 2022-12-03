@@ -1,57 +1,22 @@
-import createImage from "./createImage.js";
-import nextImage from "./nextImage.js";
-import closeImage from "./closeImage.js";
+import createGUI from "./createGUI.js";
 
-const openImage = (imageGallery, images, id) => {
-  /* Create Image */
-  createImage(imageGallery, images, id);
+export const LIGHTBOX = "lightbox";
+export const BOX = "box";
+export const ARROW = "arrow";
+export const LEFT_ARROW = "left-arrow";
+export const RIGHT_ARROW = "right-arrow";
+export const EXIT_BUTTON = "exit-button";
+export const IMG_SLIDE = "img-side";
 
-  /* Next Image */
-  const next = ({ id }) => {
-    const changeImageLocation =
-      imageGallery.querySelector("#lightbox #box img");
-    nextImage(id, images, changeImageLocation);
-  };
-  const arrows = imageGallery.querySelectorAll("#lightbox #box .arrow");
-  arrows.forEach((arrow) =>
-    arrow.addEventListener("click", ({ target }) => next(target))
-  );
+const openImage = (gallery) => {
+  const images = gallery.querySelectorAll("img");
 
-  /* Close Image */
-  const exit = () => {
-    const lightbox = imageGallery.querySelector("#lightbox");
-    closeImage(lightbox);
-  };
-  const exitButton = imageGallery.querySelector("#lightbox #box #exit-button");
-  exitButton.addEventListener("click", exit);
-
-  /* Key Handle */
-  const handleKey = (e) => {
-    const key = e.keyCode;
-    switch (key) {
-      case 27:
-        exit();
-        break;
-      case 39:
-        next({ id: "right-arrow" });
-        break;
-      case 37:
-        next({ id: "left-arrow" });
-        break;
-    }
-  };
-  document.onkeydown = handleKey;
-
-  /* Click Handle */
-  const handleClick = (e) => {
-    if (!e.target.attributes.id) {
-      return;
-    }
-
-    const target = e.target.attributes.id.value;
-    if (target === "lightbox") exit();
-  };
-  document.onclick = handleClick;
+  /* When user click on photo user show GUI */
+  images.forEach((img, id) => {
+    img.addEventListener("click", () => {
+      createGUI(gallery, images, id);
+    });
+  });
 };
 
 export default openImage;
